@@ -45,6 +45,9 @@
 
 #define PIN_MOTOR 11
 
+#define DELTA_HUM 0.03 // g/m^3
+
+
 /* display */
 U8GLIB_TLS8204_84X48 u8g(PIN_SCLK, PIN_MOSI, PIN_SCE, PIN_A0, PIN_RESET);
 
@@ -59,16 +62,20 @@ void draw(void) {
   u8g.setPrintPos( 0, 10);
   u8g.print("T:");
   u8g.print(hih_int.temp);
-  u8g.print("   ");
+  u8g.print("  ");
   u8g.print(hih_ext.temp);
   u8g.setPrintPos( 0, 20);
+  u8g.print("H%:");
+  u8g.print(hih_int.hum);
+  u8g.print("  ");
+  u8g.print(hih_ext.hum);
+  u8g.setPrintPos( 0, 30);
   u8g.print("H:");
   u8g.print(hih_int.hum_abs);
-  u8g.print(";");
-  u8g.print(hih_int.hum);
-  u8g.print(" ");
+  u8g.print("  ");
   u8g.print(hih_ext.hum_abs);
-  u8g.setPrintPos( 0, 30);
+  u8g.setPrintPos( 0, 40);
+
   if (motor_on)
     u8g.print("ON");
   else
@@ -76,7 +83,7 @@ void draw(void) {
 }
 
 boolean check_signals(float hum1, float hum2) {
-  if (hum1 - hum2 > 5) return true;
+  if (hum1 - hum2 > DELTA_HUM) return true;
   return false; 
 }
 
