@@ -64,7 +64,9 @@ void draw(void) {
   u8g.setPrintPos( 0, 20);
   u8g.print("H:");
   u8g.print(hih_int.hum_abs);
-  u8g.print("   ");
+  u8g.print(";");
+  u8g.print(hih_int.hum);
+  u8g.print(" ");
   u8g.print(hih_ext.hum_abs);
   u8g.setPrintPos( 0, 30);
   if (motor_on)
