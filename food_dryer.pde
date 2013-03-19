@@ -105,7 +105,7 @@ void loop()
     now = millis();
     hih_int.fetch(now);
     
-    if (hih_ext.fetch(now) != 20) {
+    if (hih_ext.fetch(now) != NOT_UPDATED) {
 
       u8g.firstPage();
         do {
